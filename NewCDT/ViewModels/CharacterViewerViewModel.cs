@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewCDT.ViewModels
 {
-    class CharacterViewerViewModel
+    class CharacterViewerViewModel : ObservableObject
     {
         #region Events
 
@@ -39,7 +39,7 @@ namespace NewCDT.ViewModels
         public void SetImage(string p_ImageSource)
         {
             _ImageSource = p_ImageSource;
-            
+            RaisePropertyChanged("ImageSource");
         }
         #endregion
     }

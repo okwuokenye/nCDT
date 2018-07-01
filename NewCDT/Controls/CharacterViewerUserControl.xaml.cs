@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewCDT.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace NewCDT.Controls
     /// </summary>
     public partial class CharacterViewerUserControl : UserControl
     {
+        CharacterViewerViewModel vm;
+
         public CharacterViewerUserControl()
         {
             InitializeComponent();
+            vm = new CharacterViewerViewModel();
+            base.DataContext = vm;
         }
     }
 }
