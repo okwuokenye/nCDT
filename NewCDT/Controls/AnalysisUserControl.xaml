@@ -5,22 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NewCDT.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
+             d:DesignHeight="450" d:DesignWidth="330">
     <Grid>
-        <TabControl>
-            <TabItem Header="Analysis">
-                <StackPanel Margin="20 20">
+        <StackPanel>
+            <GroupBox Header="Sheet to Analyze" Margin="10 5" Height="auto">
+                <StackPanel Margin="5 5">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Header Row" />
-                        <ComboBox Margin="10 0" Width="50" />
+                        <ComboBox Margin="10 0" Width="300" IsEditable="True" ItemsSource="{Binding SheetsToAnalyze}" SelectedItem="{Binding SheetToAnalyze}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Width="15" />
-                        <TextBlock Text="Header Row" />
+                    <StackPanel Orientation="Horizontal" Margin="10 5">
+                        <CheckBox Width="15" IsChecked="{Binding AnalyzeMultipleSheets}"/>
+                        <TextBlock Text="Analyze Multiple Sheets" />
                     </StackPanel>
                 </StackPanel>
-            </TabItem>
-        </TabControl>   
+            </GroupBox>
+
+            <GroupBox Header="Columns" Margin="10 5" Height="auto">
+                <StackPanel Margin="5 5">
+                    <TextBlock HorizontalAlignment="Right" Margin="90 5" Text="Column" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Text="Character" Width="100"/>
+                            <TextBlock Text="Text" Width="100" Margin="0 5"/>
+                            <CheckBox Content="Scene" Width="100"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="10 0">
+                            <TextBox Text="{Binding CharacterText}" Width="100"/>
+                            <TextBox Text="{Binding Text}" Margin="0 5" Width="100"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="10 0">
+                            <Button Content="-" Width="50" Command="{Binding Character-}"/>
+                            <Button Content="-" Width="50" Margin="0 5" Command="{Binding Text-}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Settings" Margin="10 5" Height="auto">
+                <StackPanel Margin="5 5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10 5" Text="Header Row" />
+                        <ComboBox Width="200" IsEditable="True" ItemsSource="{Binding HeaderRows}" SelectedItem="{Binding HeaderRow}"/>
+                    </StackPanel>
+                    <CheckBox Content="Include lines with no text" Width="200" Margin="10 5" HorizontalAlignment="Left" IsChecked="{Binding IncludeLinesNoText}"/>
+                    <CheckBox Content="Ignore strikethrough text" Width="200" Margin="10 5" HorizontalAlignment="Left" IsChecked="{Binding IgnoreText}"/>
+                    <CheckBox Content="Include lines with no character" Width="200" Margin="10 5" HorizontalAlignment="Left" IsChecked="{Binding IncludeLinesNoCharacter}"/>
+                    <CheckBox Content="Add to existing sheet" Width="200" Margin="10 5" HorizontalAlignment="Left" IsChecked="{Binding AddToExistingSheet}"/>
+                </StackPanel>
+            </GroupBox>
+            <CheckBox Content="Close Upon completion" Width="200" Margin="10 5" HorizontalAlignment="Left" IsChecked="{Binding CloseUponCompletion}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="100" Content="Cancel" Margin="5 5" Command="{Binding Cancel}"/>
+                <Button Width="100" Content="Reload" Margin="5 5" Command="{Binding Reload}"/>
+                <Button Width="100" Content="Analyze" Margin="5 5" Command="{Binding Analyze}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
